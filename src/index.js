@@ -23,17 +23,20 @@ async function onSearch(e) {
     refs.country.innerHTML = '';
     refs.countries.innerHTML = '';
     try {
-        const dataResult = await API.fetchCountries(searchQuery );
+        const dataResult = await API.fetchCountries(searchQuery);
     
         if (dataResult.length === 1) {
             renderCountryInfo(dataResult);
             // const languages = countrie[0].languages.map(l => l.name).join(', ');
             // const markup = `<p><p class="params__item">Languages:</p> ${languages}</p>`;
-            refs.country.insertAdjacentHTML('beforeend', markup);
+            // refs.country.insertAdjacentHTML('beforeend', markup);
+            Notiflix.Notify.info('We found your request');
+            console.log(dataResult)
         }
 
         if (dataResult.length >= 2 && dataResult.length <= 10) {
             renderCountryList(dataResult);
+            console.log(dataResult)
         }
 
         if (dataResult.length > 10) {
